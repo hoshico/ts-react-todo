@@ -16,6 +16,10 @@ const App: React.FC = () => {
     return () => unSub();
   },[])
 
+  const newTask = (e: React.MouseEvent<HTMLButtonElement>) => {
+    db.collection("tasks").add({title: input});
+    setInput("");
+  }
 
   return (
     <div className="App">
