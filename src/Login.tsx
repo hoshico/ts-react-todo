@@ -10,14 +10,15 @@ const Login: React.FC = (props: any) => {
     const [password, setPassword] = useState("");
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
+        const unsub = auth.onAuthStateChanged((user) => {
             user && props.history.push("/");
-        })
+        });
+        return () => unsub();
     },[props.history]);
 
     return ( 
       <div className={styles.login_root}>
-        <h1>{isLogin ? "Login" : "REgister"}</h1>
+        <h1>{isLogin ? "Login" : "Register"}</h1>
         <br />
         <FormControl>
             <TextField 
